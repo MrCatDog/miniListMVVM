@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">miniList</string>
+
+    <string name="create_btn_text">Создать</string>
+
+    <string name="show_btn_text">Просмотр</string>
+    <string name="edit_btn_text">Редактировать</string>
+    <string name="settings_btn_text">Настройки</string>
+
+    <string name="edit_hint">Введите текст</string>
+</resources>
