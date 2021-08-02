@@ -2,6 +2,7 @@ package com.example.minilist;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -24,16 +25,15 @@ public class MainActivity extends AppCompatActivity {
         presenter = new MainPresenter(this);
     }
 
-    public void setNewFragment() {
-        changeFragment(new NewFragment());
+    public void setNew() {
+        binding.editBtn.setVisibility(View.GONE);
+        binding.showBtn.setText(R.string.create_btn_text);
     }
 
-    public void setExistFragment() {
-        changeFragment(new ExistFragment());
-    }
-
-    private void changeFragment(Fragment newFragment) {
-        getSupportFragmentManager().beginTransaction().replace(binding.fragmentView.getId(), newFragment).commit();
+    public void setExist() {
+        binding.editBtn.setVisibility(View.GONE);
+        binding.showBtn.setText(R.string.create_btn_text);
+        binding.editBtn.setOnClickListener(view -> presenter.editBtnClicked());
     }
 
     public void startEdit() {

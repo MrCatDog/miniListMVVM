@@ -2,8 +2,10 @@ package com.example.minilist;
 
 public class MainPresenter {
 
+    private enum state {exist, notExist}
+
     private final MainActivity wireframe;
-    private int selectedFragment = 0;
+    private Enum<state> status;
 
     public MainPresenter(MainActivity wireframe) {
         this.wireframe = wireframe;
@@ -12,17 +14,21 @@ public class MainPresenter {
     }
 
     public void fileExist() {
-        if(selectedFragment != R.id.existFileFragment) {
-            wireframe.setExistFragment();
-            selectedFragment = R.id.existFileFragment;
+        if(status != state.exist) {
+            wireframe.setExist();
+            status = state.exist;
         }
 
     }
 
     public void newFile() {
-        if(selectedFragment != R.id.newFileFragment) {
-            wireframe.setNewFragment();
-            selectedFragment = R.id.newFileFragment;
+        if(status != state.notExist) {
+            wireframe.setNew();
+            status = state.notExist;
         }
+    }
+
+    public void editBtnClicked() {
+
     }
 }
