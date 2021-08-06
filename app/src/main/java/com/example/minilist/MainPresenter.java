@@ -1,25 +1,20 @@
 package com.example.minilist;
 
-import android.widget.Toast;
+import android.app.Activity;
+import android.content.Intent;
 
-import java.io.BufferedWriter;
+import androidx.annotation.Nullable;
+
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class MainPresenter {
 
     public final static String FILE_NAME = "miniList";
 
-    private enum state {exist, notExist}
+    private enum State {EXIST, NOT_EXIST}
 
     private final MainActivity wireframe;
-    private Enum<state> status;
+    private State status;
 
     public MainPresenter(MainActivity wireframe) {
         this.wireframe = wireframe;
@@ -36,16 +31,16 @@ public class MainPresenter {
     }
 
     public void fileExist() {
-        if (status != state.exist) {
+        if (status != State.EXIST) {
             wireframe.setExist();
-            status = state.exist;
+            status = State.EXIST;
         }
     }
 
     public void newFile() {
-        if (status != state.notExist) {
+        if (status != State.NOT_EXIST) {
             wireframe.setNew();
-            status = state.notExist;
+            status = State.NOT_EXIST;
         }
     }
 
@@ -54,19 +49,7 @@ public class MainPresenter {
     }
 
     public void onNewButtonClicked() {
-        try(PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(new File(wireframe.getFilesDir(), FILE_NAME))));
-            OutputStreamWriter osw = new OutputStreamWriter(wireframe.openFileOutput(FILE_NAME, MODE_PRIVATE))
-        ) {
-            //есть два стула, разница не ясна
-            Toast.makeText(wireframe, wireframe.getFilesDir().toString(), Toast.LENGTH_LONG).show();
-            out.println("test");
-            //osw.write("test");
-            checkFileExists();
-        } catch(IOException ioe) {
-            ioe.printStackTrace();
-            Toast.makeText(wireframe, ioe.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-            //откинуть снэк о невозможности создать
-        }
+        wireframe.startEdit();
     }
 
     public void onShowButtonClicked() {
@@ -75,5 +58,17 @@ public class MainPresenter {
 
     public void onSettingsButtonClicked() {
         //todo
+    }
+
+    public void formAnswer(int resultCode, @Nullable Intent data) {
+        if(resultCode == Activity.RESULT_OK) {
+            wireframe.showSnack(wireframe.getString(R.string.save_completed));
+        } else {
+            String extra = "";
+            if(data != null) {
+                extra = data.getStringExtra(EditActivity.EXTRA_ANSWER);
+            }
+            wireframe.showSnack(wireframe.getString(R.string.save_canceled).concat(extra));
+        }
     }
 }

@@ -8,8 +8,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.minilist.databinding.ActivityMainBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int REQUEST_CODE_CALC = 1;
 
     private ActivityMainBinding binding;
     private MainPresenter presenter;
@@ -26,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
         binding.settingsBtn.setOnClickListener(view -> presenter.onSettingsButtonClicked());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.checkFileExists();
+    }
+
     public void setNew() {
         binding.showNewBtn.setText(R.string.create_btn_text);
         binding.showNewBtn.setOnClickListener(view -> presenter.onNewButtonClicked());
@@ -39,6 +48,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startEdit() {
-        startActivity(new Intent(this, EditActivity.class));
+        startActivityForResult(new Intent(this, EditActivity.class), REQUEST_CODE_CALC);
+        //startActivity(new Intent(this, EditActivity.class));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode != REQUEST_CODE_CALC) {
+            super.onActivityResult(requestCode, resultCode, data);
+        } else {
+            presenter.formAnswer(resultCode, data);
+        }
+    }
+
+    public void showSnack(String text) {
+        Snackbar.make(binding.getRoot(), text, Snackbar.LENGTH_SHORT).show();
     }
 }
