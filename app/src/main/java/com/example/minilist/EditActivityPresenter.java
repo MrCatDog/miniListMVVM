@@ -1,11 +1,8 @@
 package com.example.minilist;
 
-import android.content.Intent;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,19 +37,21 @@ public class EditActivityPresenter {
     }
 
     public void saveText(String text) {
-        if (!(text.isEmpty() || text.equals(this.text))) {
-            //save
-            try (BufferedWriter out = new BufferedWriter(new FileWriter(new File(wireframe.getFilesDir(), FILE_NAME)))) {
-                out.write(text);
-                wireframe.success();
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-                wireframe.failed(new Intent().putExtra(EditActivity.EXTRA_ANSWER, wireframe.getString(R.string.tech_trouble)));
+        File file = new File(wireframe.getFilesDir(), FILE_NAME);
+        if (text.isEmpty()) {
+            //del
+            if (file.exists()) {
+                file.delete();
             }
         } else {
-            //no save
-            //а чо надо-то? ну предположим
-            wireframe.failed(new Intent().putExtra(EditActivity.EXTRA_ANSWER, wireframe.getString(R.string.no_changes)));
+            //save
+            if (!text.equals(this.text)) {
+                try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
+                    out.write(text);
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+            }
         }
     }
 

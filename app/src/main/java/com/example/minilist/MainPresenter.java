@@ -1,10 +1,5 @@
 package com.example.minilist;
 
-import android.app.Activity;
-import android.content.Intent;
-
-import androidx.annotation.Nullable;
-
 import java.io.File;
 
 public class MainPresenter {
@@ -18,7 +13,6 @@ public class MainPresenter {
 
     public MainPresenter(MainActivity wireframe) {
         this.wireframe = wireframe;
-        //тут проверка на наличие файла
         checkFileExists();
     }
 
@@ -53,22 +47,11 @@ public class MainPresenter {
     }
 
     public void onShowButtonClicked() {
-        //todo
+        wireframe.startViewing();
     }
 
     public void onSettingsButtonClicked() {
         //todo
     }
 
-    public void formAnswer(int resultCode, @Nullable Intent data) {
-        if(resultCode == Activity.RESULT_OK) {
-            wireframe.showSnack(wireframe.getString(R.string.save_completed));
-        } else {
-            String extra = "";
-            if(data != null) {
-                extra = data.getStringExtra(EditActivity.EXTRA_ANSWER);
-            }
-            wireframe.showSnack(wireframe.getString(R.string.save_canceled).concat(extra));
-        }
-    }
 }

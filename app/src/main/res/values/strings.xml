@@ -9,8 +9,7 @@
 
     <string name="edit_hint">Введите текст</string>
 
-    <string name="save_completed">Изменения сохранены.</string>
-    <string name="save_canceled">Не сохранено.</string>
-    <string name="no_changes">Изменений нет.</string>
-    <string name="tech_trouble">Ошибка доступа.</string>
+    <string name="text_style_cat">Стиль текста</string>
+    <string name="text_style_size">Размер текста</string>
+    <string name="text_style_color">Цвет текста</string>
 </resources>

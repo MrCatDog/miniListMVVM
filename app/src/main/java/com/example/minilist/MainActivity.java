@@ -8,11 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.minilist.databinding.ActivityMainBinding;
-import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final int REQUEST_CODE_CALC = 1;
 
     private ActivityMainBinding binding;
     private MainPresenter presenter;
@@ -48,20 +45,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startEdit() {
-        startActivityForResult(new Intent(this, EditActivity.class), REQUEST_CODE_CALC);
-        //startActivity(new Intent(this, EditActivity.class));
+        startActivity(new Intent(this, EditActivity.class));
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode != REQUEST_CODE_CALC) {
-            super.onActivityResult(requestCode, resultCode, data);
-        } else {
-            presenter.formAnswer(resultCode, data);
-        }
-    }
-
-    public void showSnack(String text) {
-        Snackbar.make(binding.getRoot(), text, Snackbar.LENGTH_SHORT).show();
+    public void startViewing() {
+        startActivity(new Intent(this, WatchActivity.class));
     }
 }
