@@ -43,12 +43,4 @@ public class MainActivity extends AppCompatActivity {
         binding.showNewBtn.setOnClickListener(view -> presenter.onShowButtonClicked());
         binding.editBtn.setVisibility(View.VISIBLE);
     }
-
-    public void startEdit() {
-        startActivity(new Intent(this, EditActivity.class));
-    }
-
-    public void startViewing() {
-        startActivity(new Intent(this, WatchActivity.class));
-    }
 }

@@ -9,8 +9,6 @@ import com.example.minilist.databinding.EditActivityBinding;
 
 public class EditActivity extends AppCompatActivity {
 
-    public static final String EXTRA_ANSWER = "answer";
-
     private EditActivityBinding binding;
     private EditActivityPresenter presenter;
 

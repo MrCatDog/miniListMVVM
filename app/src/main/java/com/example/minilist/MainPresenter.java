@@ -1,5 +1,7 @@
 package com.example.minilist;
 
+import android.content.Intent;
+
 import java.io.File;
 
 public class MainPresenter {
@@ -39,19 +41,19 @@ public class MainPresenter {
     }
 
     public void onEditButtonClicked() {
-        wireframe.startEdit();
+        wireframe.startActivity(new Intent(wireframe, EditActivity.class));
     }
 
     public void onNewButtonClicked() {
-        wireframe.startEdit();
+        wireframe.startActivity(new Intent(wireframe, EditActivity.class));
     }
 
     public void onShowButtonClicked() {
-        wireframe.startViewing();
+        wireframe.startActivity(new Intent(wireframe, WatchActivity.class));
     }
 
     public void onSettingsButtonClicked() {
-        //todo
+        wireframe.startActivity(new Intent(wireframe, SettingsActivity.class));
     }
 
 }

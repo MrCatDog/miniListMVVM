@@ -9,7 +9,14 @@
 
     <string name="edit_hint">Введите текст</string>
 
-    <string name="text_style_cat">Стиль текста</string>
     <string name="text_style_size">Размер текста</string>
     <string name="text_style_color">Цвет текста</string>
+
+    <string name="burnt_umber_color">Жжёная умбра</string>
+    <string name="black_color">Чёрный</string>
+    <string name="kashmir_green_color">Кашмирский зелёный</string>
+
+    <string name="little_text_size">Мелкий</string>
+    <string name="average_text_size">Средний</string>
+    <string name="big_text_size">Большой</string>
 </resources>
