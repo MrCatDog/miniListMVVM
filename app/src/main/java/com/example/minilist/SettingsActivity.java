@@ -1,6 +1,7 @@
 package com.example.minilist;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,12 +21,17 @@ public class SettingsActivity extends AppCompatActivity {
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        presenter = new SettingsPresenter(this);
+        presenter = new SettingsPresenter(this, PreferenceManager.getDefaultSharedPreferences(this));
 
         binding.radioTextSize.setOnCheckedChangeListener((view, check) -> presenter.changeSize(view));
         binding.radioTextColor.setOnCheckedChangeListener((view, check) -> presenter.changeColor(view));
+    }
 
-        binding.radio16.toggle();
-        binding.radioBlack.toggle();
+    public void setSizeRadio(int buttonID) {
+        binding.radioTextSize.check(buttonID);
+    }
+
+    public void setColorRadio(int buttonID) {
+        binding.radioTextColor.check(buttonID);
     }
 }
