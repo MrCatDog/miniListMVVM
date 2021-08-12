@@ -1,6 +1,5 @@
 package com.example.minilist;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
@@ -26,8 +25,8 @@ public class WatchActivity extends AppCompatActivity {
         binding.lineList.setText(text);
     }
 
-    public void setTextColor(Color color) {
-        binding.lineList.setTextColor(color.hashCode());
+    public void setTextColor(int color) {
+        binding.lineList.setTextColor(color);
     }
 
     public void setTextSize(float size) {

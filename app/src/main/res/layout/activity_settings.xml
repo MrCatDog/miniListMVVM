@@ -29,7 +29,7 @@
             app:layout_constraintTop_toBottomOf="@id/size_title">
 
             <RadioButton
-                android:id="@+id/radio_14"
+                android:id="@+id/radio_little"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/radioStartMargin"
@@ -37,7 +37,7 @@
                 android:textSize="@dimen/little_text_size" />
 
             <RadioButton
-                android:id="@+id/radio_16"
+                android:id="@+id/radio_avg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/radioStartMargin"
@@ -45,7 +45,7 @@
                 android:textSize="@dimen/average_text_size" />
 
             <RadioButton
-                android:id="@+id/radio_18"
+                android:id="@+id/radio_big"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/radioStartMargin"

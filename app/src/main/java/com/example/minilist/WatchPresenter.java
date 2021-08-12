@@ -1,7 +1,6 @@
 package com.example.minilist;
 
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,8 +17,11 @@ public class WatchPresenter {
 
     public WatchPresenter(WatchActivity wireframe, SharedPreferences sharedPreferences) {
         this.wireframe = wireframe;
-//       wireframe.setTextSize(sharedPreferences.getInt(SETTINGS_TEXT_SIZE, R.dimen.average_text_size));
-        wireframe.setTextColor(sharedPreferences.getInt(SETTINGS_TEXT_COLOR, R.color.black));
+        //обжаю такие длинные портянки
+        //размер сильно превышает тот, что указан в dimens, но это из-за домножения на значения из DisplayMetrics. Для чистого значения нужно использовать Resources.getValue()
+        wireframe.setTextSize(wireframe.getResources().getDimension(sharedPreferences.getInt(SETTINGS_TEXT_SIZE, R.dimen.average_text_size)));
+        wireframe.setTextColor(wireframe.getResources().getColor(sharedPreferences.getInt(SETTINGS_TEXT_COLOR, R.color.black)));
+
         try (BufferedReader in = new BufferedReader(new FileReader(new File(wireframe.getFilesDir(), FILE_NAME)))) {
             StringBuilder stringBuilder = new StringBuilder();
             String line;

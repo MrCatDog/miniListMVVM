@@ -15,13 +15,13 @@ public class SettingsPresenter {
         this.wireframe = wireframe;
         switch (sharedPreferences.getInt(SETTINGS_TEXT_SIZE, R.dimen.average_text_size)) {
             case R.dimen.little_text_size:
-                wireframe.setSizeRadio(R.id.radio_14);
+                wireframe.setSizeRadio(R.id.radio_little);
                 break;
             case R.dimen.big_text_size:
-                wireframe.setSizeRadio(R.id.radio_18);
+                wireframe.setSizeRadio(R.id.radio_big);
                 break;
             default:
-                wireframe.setSizeRadio(R.id.radio_16);
+                wireframe.setSizeRadio(R.id.radio_avg);
                 break;
         }
 
@@ -43,10 +43,10 @@ public class SettingsPresenter {
     public void changeSize(RadioGroup radioGroup) {
         int size;
         switch (radioGroup.getCheckedRadioButtonId()) {
-            case R.id.radio_14:
+            case R.id.radio_little:
                 size = R.dimen.little_text_size;
                 break;
-            case R.id.radio_18:
+            case R.id.radio_big:
                 size = R.dimen.big_text_size;
                 break;
             default:
