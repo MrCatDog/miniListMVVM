@@ -23,7 +23,6 @@ public class EditActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        //todo: file save с проверкой успеха, показываем снек с результатом
         presenter.saveText(binding.fileText.getText().toString());
     }
 

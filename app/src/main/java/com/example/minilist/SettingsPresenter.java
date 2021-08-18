@@ -9,15 +9,23 @@ import static com.example.minilist.SettingsActivity.SETTINGS_TEXT_SIZE;
 
 public class SettingsPresenter {
 
+    public static final int LITTLE_SIZE = 0;
+    public static final int AVERAGE_SIZE = 1;
+    public static final int BIG_SIZE = 2;
+
+    public static final int BLACK_COLOR = 0;
+    public static final int UMBER_COLOR = 1;
+    public static final int GREEN_COLOR = 2;
+
     private final SettingsActivity wireframe;
 
     SettingsPresenter(SettingsActivity wireframe, SharedPreferences sharedPreferences) {
         this.wireframe = wireframe;
-        switch (sharedPreferences.getInt(SETTINGS_TEXT_SIZE, R.dimen.average_text_size)) {
-            case R.dimen.little_text_size:
+        switch (sharedPreferences.getInt(SETTINGS_TEXT_SIZE, AVERAGE_SIZE)) {
+            case LITTLE_SIZE:
                 wireframe.setSizeRadio(R.id.radio_little);
                 break;
-            case R.dimen.big_text_size:
+            case BIG_SIZE:
                 wireframe.setSizeRadio(R.id.radio_big);
                 break;
             default:
@@ -26,11 +34,11 @@ public class SettingsPresenter {
         }
 
 
-        switch (sharedPreferences.getInt(SETTINGS_TEXT_COLOR, R.color.black)) {
-            case R.color.burnt_umber:
+        switch (sharedPreferences.getInt(SETTINGS_TEXT_COLOR, BLACK_COLOR)) {
+            case UMBER_COLOR:
                 wireframe.setColorRadio(R.id.radio_burnt_umber);
                 break;
-            case R.color.kashmir_green:
+            case GREEN_COLOR:
                 wireframe.setColorRadio(R.id.radio_kashmir_green);
                 break;
             default:
@@ -44,13 +52,13 @@ public class SettingsPresenter {
         int size;
         switch (radioGroup.getCheckedRadioButtonId()) {
             case R.id.radio_little:
-                size = R.dimen.little_text_size;
+                size = LITTLE_SIZE;
                 break;
             case R.id.radio_big:
-                size = R.dimen.big_text_size;
+                size = BIG_SIZE;
                 break;
             default:
-                size = R.dimen.average_text_size;
+                size = AVERAGE_SIZE;
                 break;
         }
         SharedPreferences.Editor save = PreferenceManager.getDefaultSharedPreferences(wireframe).edit();
@@ -63,13 +71,13 @@ public class SettingsPresenter {
         int color;
         switch (radioGroup.getCheckedRadioButtonId()) {
             case R.id.radio_burnt_umber:
-                color = R.color.burnt_umber;
+                color = UMBER_COLOR;
                 break;
             case R.id.radio_kashmir_green:
-                color = R.color.kashmir_green;
+                color = GREEN_COLOR;
                 break;
             default:
-                color = R.color.black;
+                color = BLACK_COLOR;
                 break;
         }
         save.putInt(SETTINGS_TEXT_COLOR, color);

@@ -29,7 +29,7 @@ public class WatchActivity extends AppCompatActivity {
         binding.lineList.setTextColor(color);
     }
 
-    public void setTextSize(float size) {
-        binding.lineList.setTextSize(size);
+    public void setTextSize(int size, float dimension) {
+        binding.lineList.setTextSize(size, dimension);
     }
 }

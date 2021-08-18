@@ -15,19 +15,14 @@ import static com.example.minilist.SettingsActivity.SETTINGS_TEXT_SIZE;
 public class WatchPresenter {
 
     private final WatchActivity wireframe;
+    private final SharedPreferences sharedPreferences;
 
     public WatchPresenter(WatchActivity wireframe, SharedPreferences sharedPreferences) {
         this.wireframe = wireframe;
-        //обжаю такие длинные портянки
-        //размер сильно превышает тот, что указан в dimens, но это из-за домножения на значения из DisplayMetrics. Для чистого значения нужно использовать Resources.getValue()
-        wireframe.setTextSize(wireframe.getResources().getDimension(sharedPreferences.getInt(SETTINGS_TEXT_SIZE, R.dimen.average_text_size)));
-//        TypedValue val = new TypedValue();
-//        wireframe.getResources().getValue(R.dimen.average_text_size, val, true);
-//        if(val.type == TypedValue.TYPE_DIMENSION) {
-//            wireframe.setTextSize(val.getFloat()); //API 22
-//        }
-        //блин, чо так трудна, я просто хочу размер получить без сумасшедшей метрики
-        wireframe.setTextColor(wireframe.getResources().getColor(sharedPreferences.getInt(SETTINGS_TEXT_COLOR, R.color.black)));
+        this.sharedPreferences = sharedPreferences;
+
+        getTextColor();
+        getTextSize();
 
         try (BufferedReader in = new BufferedReader(new FileReader(new File(wireframe.getFilesDir(), FILE_NAME)))) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -40,5 +35,37 @@ public class WatchPresenter {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
+    }
+
+    private void getTextColor() {
+        int color;
+        switch (sharedPreferences.getInt(SETTINGS_TEXT_COLOR, SettingsPresenter.BLACK_COLOR)) {
+            case SettingsPresenter.UMBER_COLOR:
+                color = R.color.burnt_umber;
+                break;
+            case SettingsPresenter.GREEN_COLOR:
+                color = R.color.kashmir_green;
+                break;
+            default:
+                color = R.color.black;
+                break;
+        }
+        wireframe.setTextColor(wireframe.getResources().getColor(color));
+    }
+
+    private void getTextSize() {
+        int size;
+        switch (sharedPreferences.getInt(SETTINGS_TEXT_SIZE, SettingsPresenter.AVERAGE_SIZE)) {
+            case SettingsPresenter.LITTLE_SIZE:
+                size = R.dimen.little_text_size;
+                break;
+            case SettingsPresenter.BIG_SIZE:
+                size = R.dimen.big_text_size;
+                break;
+            default:
+                size = R.dimen.average_text_size;
+                break;
+        }
+        wireframe.setTextSize(TypedValue.COMPLEX_UNIT_PX, wireframe.getResources().getDimensionPixelSize(size));
     }
 }
