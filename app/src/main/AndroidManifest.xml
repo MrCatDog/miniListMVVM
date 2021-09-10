@@ -10,26 +10,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MiniList">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".EditActivity">
+        <activity android:name=".edit.EditActivity">
             <intent-filter>
                 <action android:name="android.intent.action.EDIT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".WatchActivity">
+        <activity android:name=".watch.WatchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".SettingsActivity">
+        <activity android:name=".settings.SettingsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

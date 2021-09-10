@@ -1,4 +1,4 @@
-package com.example.minilist;
+package com.example.minilist.settings;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;

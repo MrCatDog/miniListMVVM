@@ -1,4 +1,4 @@
-package com.example.minilist;
+package com.example.minilist.edit;
 
 import android.os.Bundle;
 

@@ -1,4 +1,4 @@
-package com.example.minilist;
+package com.example.minilist.edit;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import static com.example.minilist.MainPresenter.FILE_NAME;
+import static com.example.minilist.main.MainPresenter.FILE_NAME;
 
 public class EditActivityPresenter {
 

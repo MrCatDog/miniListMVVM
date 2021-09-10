@@ -1,30 +1,33 @@
-package com.example.minilist;
+package com.example.minilist.watch;
 
 import android.content.SharedPreferences;
 import android.util.TypedValue;
+
+import com.example.minilist.R;
+import com.example.minilist.settings.SettingsPresenter;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import static com.example.minilist.MainPresenter.FILE_NAME;
-import static com.example.minilist.SettingsActivity.SETTINGS_TEXT_COLOR;
-import static com.example.minilist.SettingsActivity.SETTINGS_TEXT_SIZE;
+import static com.example.minilist.main.MainPresenter.FILE_NAME;
+import static com.example.minilist.settings.SettingsActivity.SETTINGS_TEXT_COLOR;
+import static com.example.minilist.settings.SettingsActivity.SETTINGS_TEXT_SIZE;
 
 public class WatchPresenter {
 
-    private final WatchActivity wireframe;
+    private final WatchWireframe wireframe;
     private final SharedPreferences sharedPreferences;
 
-    public WatchPresenter(WatchActivity wireframe, SharedPreferences sharedPreferences) {
+    public WatchPresenter(WatchWireframe wireframe, SharedPreferences sharedPreferences) {
         this.wireframe = wireframe;
         this.sharedPreferences = sharedPreferences;
 
         getTextColor();
         getTextSize();
 
-        try (BufferedReader in = new BufferedReader(new FileReader(new File(wireframe.getFilesDir(), FILE_NAME)))) {
+        try (BufferedReader in = new BufferedReader(new FileReader(new File(wireframe.getDir(), FILE_NAME)))) {
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             int i = 0;
@@ -50,7 +53,7 @@ public class WatchPresenter {
                 color = R.color.black;
                 break;
         }
-        wireframe.setTextColor(wireframe.getResources().getColor(color));
+        wireframe.setTextColor(color);
     }
 
     private void getTextSize() {
@@ -66,6 +69,6 @@ public class WatchPresenter {
                 size = R.dimen.average_text_size;
                 break;
         }
-        wireframe.setTextSize(TypedValue.COMPLEX_UNIT_PX, wireframe.getResources().getDimensionPixelSize(size));
+        wireframe.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
     }
 }

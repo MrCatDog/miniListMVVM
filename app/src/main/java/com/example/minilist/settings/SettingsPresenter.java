@@ -1,11 +1,13 @@
-package com.example.minilist;
+package com.example.minilist.settings;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.RadioGroup;
 
-import static com.example.minilist.SettingsActivity.SETTINGS_TEXT_COLOR;
-import static com.example.minilist.SettingsActivity.SETTINGS_TEXT_SIZE;
+import com.example.minilist.R;
+
+import static com.example.minilist.settings.SettingsActivity.SETTINGS_TEXT_COLOR;
+import static com.example.minilist.settings.SettingsActivity.SETTINGS_TEXT_SIZE;
 
 public class SettingsPresenter {
 
