@@ -2,6 +2,7 @@ package com.example.minilist.watch
 
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.TypedValue
 import androidx.appcompat.app.AppCompatActivity
 import com.example.minilist.databinding.ActivityWatchBinding
 import java.io.File
@@ -26,7 +27,7 @@ class WatchActivity : AppCompatActivity(), WatchWireframe {
         binding.lineList.setTextColor(resources.getColor(color))
     }
 
-    override fun setTextSize(size: Int, dimension: Int) {
-        binding.lineList.setTextSize(size, resources.getDimensionPixelSize(dimension).toFloat())
+    override fun setTextSize(dimension: Int) {
+        binding.lineList.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimensionPixelSize(dimension).toFloat())
     }
 }

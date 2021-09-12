@@ -69,6 +69,6 @@ public class WatchPresenter {
                 size = R.dimen.average_text_size;
                 break;
         }
-        wireframe.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
+        wireframe.setTextSize(size);
     }
 }
