@@ -43,8 +43,6 @@ class MainActivity : AppCompatActivity(), MainWireframe {
         binding.editBtn.visibility = View.VISIBLE
     }
 
-    override fun getDir(): File = filesDir
-
     override fun changeActivity(direction: MainWireframe.Direction) =
             when (direction) {
                 SETTINGS -> startActivity(Intent(this, SettingsActivity::class.java))

@@ -27,7 +27,7 @@ public class WatchPresenter {
         getTextColor();
         getTextSize();
 
-        try (BufferedReader in = new BufferedReader(new FileReader(new File(wireframe.getDir(), FILE_NAME)))) {
+        try (BufferedReader in = new BufferedReader(new FileReader(new File(wireframe.getFilesDir(), FILE_NAME)))) {
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             int i = 0;

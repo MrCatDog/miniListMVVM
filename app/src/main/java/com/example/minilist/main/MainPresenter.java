@@ -14,7 +14,7 @@ public class MainPresenter {
     }
 
     public void checkFileExists() {
-        if (new File(wireframe.getDir(), FILE_NAME).exists()) {
+        if (new File(wireframe.getFilesDir(), FILE_NAME).exists()) {
             wireframe.setExist();
         } else {
             wireframe.setNew();

@@ -1,44 +1,34 @@
-package com.example.minilist.edit;
+package com.example.minilist.edit
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
+import com.example.minilist.main.MainPresenter
+import java.io.*
+import java.util.*
 
-import static com.example.minilist.main.MainPresenter.FILE_NAME;
+class EditActivityPresenter internal constructor(private val wireframe: EditWireframe) {
 
-public class EditActivityPresenter {
-
-    private final EditActivity wireframe;
-
-    EditActivityPresenter(EditActivity wireframe) {
-        this.wireframe = wireframe;
-        File source = new File(wireframe.getFilesDir(), FILE_NAME);
+    init {
+        val source = File(wireframe.getFilesDir(), MainPresenter.FILE_NAME)
         if (source.exists()) {
-            try (Scanner in = new Scanner(source)) {
-                this.wireframe.setText(in.useDelimiter("\\Z").next());
-            } catch (FileNotFoundException exception) {
-                exception.printStackTrace();
+            try {
+                Scanner(source).use { input -> wireframe.setText(input.useDelimiter("\\Z").next()) }
+            } catch (exception: FileNotFoundException) {
+                exception.printStackTrace()
             }
         }
     }
 
-    public void saveText(String text) {
-        File file = new File(wireframe.getFilesDir(), FILE_NAME);
+    fun saveText(text: String) {
+        val file = File(wireframe.getFilesDir(), MainPresenter.FILE_NAME)
         if (text.isEmpty()) {
             //del
-            file.delete();
+            file.delete()
         } else {
             //save
-            try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
-                out.write(text);
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
+            try {
+                BufferedWriter(FileWriter(file)).use { out -> out.write(text) }
+            } catch (ioe: IOException) {
+                ioe.printStackTrace()
             }
         }
     }
-
-
 }

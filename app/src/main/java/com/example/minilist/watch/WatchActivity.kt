@@ -29,8 +29,4 @@ class WatchActivity : AppCompatActivity(), WatchWireframe {
     override fun setTextSize(size: Int, dimension: Int) {
         binding.lineList.setTextSize(size, resources.getDimensionPixelSize(dimension).toFloat())
     }
-
-    override fun getDir(): File = filesDir
-
-
 }

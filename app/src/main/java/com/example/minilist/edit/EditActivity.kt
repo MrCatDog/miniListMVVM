@@ -1,33 +1,27 @@
-package com.example.minilist.edit;
+package com.example.minilist.edit
 
-import android.os.Bundle;
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.minilist.databinding.EditActivityBinding
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+class EditActivity : AppCompatActivity(), EditWireframe {
 
-import com.example.minilist.databinding.EditActivityBinding;
+    private lateinit var binding: EditActivityBinding
+    private lateinit var presenter: EditActivityPresenter
 
-public class EditActivity extends AppCompatActivity {
-
-    private EditActivityBinding binding;
-    private EditActivityPresenter presenter;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = EditActivityBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        presenter = new EditActivityPresenter(this);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = EditActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        presenter = EditActivityPresenter(this)
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        presenter.saveText(binding.fileText.getText().toString());
+    override fun onPause() {
+        super.onPause()
+        presenter.saveText(binding.fileText.text.toString())
     }
 
-    public void setText(String text) {
-        binding.fileText.setText(text);
+    override fun setText(text: String) {
+        binding.fileText.setText(text)
     }
-
 }

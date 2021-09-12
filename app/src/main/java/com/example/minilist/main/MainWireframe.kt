@@ -11,6 +11,6 @@ interface MainWireframe {
 
     fun setExist()
     fun setNew()
-    fun getDir(): File
+    fun getFilesDir(): File
     fun changeActivity(direction: Direction)
 }

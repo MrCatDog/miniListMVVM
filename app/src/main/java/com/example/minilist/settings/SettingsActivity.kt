@@ -1,37 +1,35 @@
-package com.example.minilist.settings;
+package com.example.minilist.settings
 
-import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.os.Bundle
+import android.preference.PreferenceManager
+import android.widget.RadioGroup
+import androidx.appcompat.app.AppCompatActivity
+import com.example.minilist.databinding.ActivitySettingsBinding
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import com.example.minilist.databinding.ActivitySettingsBinding;
+class SettingsActivity : AppCompatActivity() {
 
-public class SettingsActivity extends AppCompatActivity {
+    private lateinit var presenter: SettingsPresenter
+    private lateinit var binding: ActivitySettingsBinding
 
-    public final static String SETTINGS_TEXT_COLOR = "text_color";
-    public final static String SETTINGS_TEXT_SIZE = "text_size";
-
-    private SettingsPresenter presenter;
-    private ActivitySettingsBinding binding;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivitySettingsBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        presenter = new SettingsPresenter(this, PreferenceManager.getDefaultSharedPreferences(this));
-
-        binding.radioTextSize.setOnCheckedChangeListener((view, check) -> presenter.changeSize(view));
-        binding.radioTextColor.setOnCheckedChangeListener((view, check) -> presenter.changeColor(view));
+    companion object {
+        const val SETTINGS_TEXT_COLOR = "text_color"
+        const val SETTINGS_TEXT_SIZE = "text_size"
     }
 
-    public void setSizeRadio(int buttonID) {
-        binding.radioTextSize.check(buttonID);
+    public override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        presenter = SettingsPresenter(this, PreferenceManager.getDefaultSharedPreferences(this))
+        binding.radioTextSize.setOnCheckedChangeListener { _: RadioGroup, check: Int -> presenter.changeSize(check) }
+        binding.radioTextColor.setOnCheckedChangeListener { _: RadioGroup, check: Int -> presenter.changeColor(check) }
     }
 
-    public void setColorRadio(int buttonID) {
-        binding.radioTextColor.check(buttonID);
+    fun setSizeRadio(buttonID: Int) {
+        binding.radioTextSize.check(buttonID)
+    }
+
+    fun setColorRadio(buttonID: Int) {
+        binding.radioTextColor.check(buttonID)
     }
 }
