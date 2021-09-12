@@ -1,40 +1,38 @@
-package com.example.minilist.main;
+package com.example.minilist.main
 
-import java.io.File;
+import java.io.File
 
-public class MainPresenter {
+class MainPresenter(private val wireframe: MainWireframe) {
 
-    public final static String FILE_NAME = "miniList";
-
-    private final MainWireframe wireframe;
-
-    public MainPresenter(MainWireframe wireframe) {
-        this.wireframe = wireframe;
-        checkFileExists();
+    companion object {
+        const val FILE_NAME = "miniList"
     }
 
-    public void checkFileExists() {
-        if (new File(wireframe.getFilesDir(), FILE_NAME).exists()) {
-            wireframe.setExist();
+    init {
+        checkFileExists()
+    }
+
+    fun checkFileExists() {
+        if (File(wireframe.getFilesDir(), FILE_NAME).exists()) {
+            wireframe.setExist()
         } else {
-            wireframe.setNew();
+            wireframe.setNew()
         }
     }
 
-    public void onEditButtonClicked() {
-        wireframe.changeActivity(MainWireframe.Direction.EDIT);
+    fun onEditButtonClicked() {
+        wireframe.changeActivity(MainWireframe.Direction.EDIT)
     }
 
-    public void onNewButtonClicked() {
-        wireframe.changeActivity(MainWireframe.Direction.EDIT);
+    fun onNewButtonClicked() {
+        wireframe.changeActivity(MainWireframe.Direction.EDIT)
     }
 
-    public void onShowButtonClicked() {
-        wireframe.changeActivity(MainWireframe.Direction.WATCH);
+    fun onShowButtonClicked() {
+        wireframe.changeActivity(MainWireframe.Direction.WATCH)
     }
 
-    public void onSettingsButtonClicked() {
-        wireframe.changeActivity(MainWireframe.Direction.SETTINGS);
+    fun onSettingsButtonClicked() {
+        wireframe.changeActivity(MainWireframe.Direction.SETTINGS)
     }
-
 }
