@@ -1,19 +1,16 @@
 package com.example.minilist.main
 
+import com.example.minilist.Shared
 import java.io.File
 
 class MainPresenter(private val wireframe: MainWireframe) {
-
-    companion object {
-        const val FILE_NAME = "miniList"
-    }
 
     init {
         checkFileExists()
     }
 
     fun checkFileExists() {
-        if (File(wireframe.getFilesDir(), FILE_NAME).exists()) {
+        if (File(wireframe.getFilesDir(), Shared.FILE_NAME).exists()) {
             wireframe.setExist()
         } else {
             wireframe.setNew()

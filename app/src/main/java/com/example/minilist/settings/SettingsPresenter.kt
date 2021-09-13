@@ -2,27 +2,19 @@ package com.example.minilist.settings
 
 import android.content.SharedPreferences
 import com.example.minilist.R
+import com.example.minilist.Shared
 
 class SettingsPresenter internal constructor(wireframe: SettingsWireframe, private val sharedPreferences: SharedPreferences) {
 
-    companion object {
-        const val LITTLE_SIZE = 0
-        const val AVERAGE_SIZE = 1
-        const val BIG_SIZE = 2
-        const val BLACK_COLOR = 0
-        const val UMBER_COLOR = 1
-        const val GREEN_COLOR = 2
-    }
-
     init {
-        wireframe.setSizeRadio(when (sharedPreferences.getInt(SettingsActivity.SETTINGS_TEXT_SIZE, AVERAGE_SIZE)) {
-            LITTLE_SIZE -> R.id.radio_little
-            BIG_SIZE -> R.id.radio_big
+        wireframe.setSizeRadio(when (sharedPreferences.getInt(SettingsActivity.SETTINGS_TEXT_SIZE, Shared.AVERAGE_SIZE)) {
+            Shared.LITTLE_SIZE -> R.id.radio_little
+            Shared.BIG_SIZE -> R.id.radio_big
             else -> R.id.radio_avg
         })
-        wireframe.setColorRadio(when (sharedPreferences.getInt(SettingsActivity.SETTINGS_TEXT_COLOR, BLACK_COLOR)) {
-            UMBER_COLOR -> R.id.radio_burnt_umber
-            GREEN_COLOR -> R.id.radio_kashmir_green
+        wireframe.setColorRadio(when (sharedPreferences.getInt(SettingsActivity.SETTINGS_TEXT_COLOR, Shared.BLACK_COLOR)) {
+            Shared.UMBER_COLOR -> R.id.radio_burnt_umber
+            Shared.GREEN_COLOR -> R.id.radio_kashmir_green
             else -> R.id.radio_black
         })
     }
@@ -32,9 +24,9 @@ class SettingsPresenter internal constructor(wireframe: SettingsWireframe, priva
                 .putInt(
                         SettingsActivity.SETTINGS_TEXT_SIZE,
                         when (checkedRadioButtonId) {
-                            R.id.radio_little -> LITTLE_SIZE
-                            R.id.radio_big -> BIG_SIZE
-                            else -> AVERAGE_SIZE
+                            R.id.radio_little -> Shared.LITTLE_SIZE
+                            R.id.radio_big -> Shared.BIG_SIZE
+                            else -> Shared.AVERAGE_SIZE
                         }
                 )
                 .apply()
@@ -42,9 +34,9 @@ class SettingsPresenter internal constructor(wireframe: SettingsWireframe, priva
 
     fun changeColor(checkedRadioButtonId: Int) {
         sharedPreferences.edit().putInt(SettingsActivity.SETTINGS_TEXT_COLOR, when (checkedRadioButtonId) {
-            R.id.radio_burnt_umber -> UMBER_COLOR
-            R.id.radio_kashmir_green -> GREEN_COLOR
-            else -> BLACK_COLOR
+            R.id.radio_burnt_umber -> Shared.UMBER_COLOR
+            R.id.radio_kashmir_green -> Shared.GREEN_COLOR
+            else -> Shared.BLACK_COLOR
         }).apply()
     }
 }

@@ -10,7 +10,6 @@ import com.example.minilist.main.MainWireframe.Direction.*
 import com.example.minilist.databinding.ActivityMainBinding
 import com.example.minilist.edit.EditActivity
 import com.example.minilist.settings.SettingsActivity
-import java.io.File
 
 class MainActivity : AppCompatActivity(), MainWireframe {
 
