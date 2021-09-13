@@ -6,7 +6,7 @@ import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.example.minilist.databinding.ActivitySettingsBinding
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity(), SettingsWireframe {
 
     private lateinit var presenter: SettingsPresenter
     private lateinit var binding: ActivitySettingsBinding
@@ -25,11 +25,11 @@ class SettingsActivity : AppCompatActivity() {
         binding.radioTextColor.setOnCheckedChangeListener { _: RadioGroup, check: Int -> presenter.changeColor(check) }
     }
 
-    fun setSizeRadio(buttonID: Int) {
-        binding.radioTextSize.check(buttonID)
+    override fun setSizeRadio(sizeId: Int) {
+        binding.radioTextSize.check(sizeId)
     }
 
-    fun setColorRadio(buttonID: Int) {
-        binding.radioTextColor.check(buttonID)
+    override fun setColorRadio(colorId: Int) {
+        binding.radioTextColor.check(colorId)
     }
 }

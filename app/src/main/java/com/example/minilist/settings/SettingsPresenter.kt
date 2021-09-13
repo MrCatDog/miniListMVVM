@@ -3,7 +3,7 @@ package com.example.minilist.settings
 import android.content.SharedPreferences
 import com.example.minilist.R
 
-class SettingsPresenter internal constructor(wireframe: SettingsActivity, private val sharedPreferences: SharedPreferences) {
+class SettingsPresenter internal constructor(wireframe: SettingsWireframe, private val sharedPreferences: SharedPreferences) {
 
     companion object {
         const val LITTLE_SIZE = 0
@@ -28,23 +28,16 @@ class SettingsPresenter internal constructor(wireframe: SettingsActivity, privat
     }
 
     fun changeSize(checkedRadioButtonId: Int) {
-        sharedPreferences.edit().putInt(
-                SettingsActivity.SETTINGS_TEXT_SIZE,
-                when (checkedRadioButtonId) {
-                    R.id.radio_little -> LITTLE_SIZE
-                    R.id.radio_big -> BIG_SIZE
-                    else -> AVERAGE_SIZE
-                }
-        ).apply()
-
-        //не упала ли читаемость?
-
-//        val size: Int = when (checkedRadioButtonId) {
-//            R.id.radio_little -> LITTLE_SIZE
-//            R.id.radio_big -> BIG_SIZE
-//            else -> AVERAGE_SIZE
-//        }
-//        sharedPreferences.edit().putInt(SettingsActivity.SETTINGS_TEXT_SIZE, size).apply()
+        sharedPreferences.edit()
+                .putInt(
+                        SettingsActivity.SETTINGS_TEXT_SIZE,
+                        when (checkedRadioButtonId) {
+                            R.id.radio_little -> LITTLE_SIZE
+                            R.id.radio_big -> BIG_SIZE
+                            else -> AVERAGE_SIZE
+                        }
+                )
+                .apply()
     }
 
     fun changeColor(checkedRadioButtonId: Int) {
