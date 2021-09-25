@@ -11,11 +11,6 @@ class SettingsActivity : AppCompatActivity(), SettingsWireframe {
     private lateinit var presenter: SettingsPresenter
     private lateinit var binding: ActivitySettingsBinding
 
-    companion object {
-        const val SETTINGS_TEXT_COLOR = "text_color"
-        const val SETTINGS_TEXT_SIZE = "text_size"
-    }
-
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)

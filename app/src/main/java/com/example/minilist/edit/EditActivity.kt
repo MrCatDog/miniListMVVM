@@ -7,13 +7,13 @@ import com.example.minilist.databinding.EditActivityBinding
 class EditActivity : AppCompatActivity(), EditWireframe {
 
     private lateinit var binding: EditActivityBinding
-    private lateinit var presenter: EditActivityPresenter
+    private lateinit var presenter: EditPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = EditActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        presenter = EditActivityPresenter(this)
+        presenter = EditPresenter(this)
     }
 
     override fun onPause() {
