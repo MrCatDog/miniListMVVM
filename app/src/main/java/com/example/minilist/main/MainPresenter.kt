@@ -3,7 +3,7 @@ package com.example.minilist.main
 import com.example.minilist.Shared
 import java.io.File
 
-class MainPresenter(private val wireframe: MainWireframe) {
+class MainPresenter internal constructor(private val wireframe: MainWireframe) {
 
     init {
         checkFileExists()

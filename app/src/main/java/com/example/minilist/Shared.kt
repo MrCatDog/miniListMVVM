@@ -13,4 +13,6 @@ object Shared {
     const val COLOR_BLACK = 0
     const val COLOR_UMBER = 1
     const val COLOR_GREEN = 2
+
+    const val LOG_TAG = "miniList"
 }

@@ -1,6 +1,7 @@
 package com.example.minilist.watch
 
 import android.content.SharedPreferences
+import android.util.Log
 import com.example.minilist.R
 import com.example.minilist.Shared
 import java.io.File
@@ -29,7 +30,7 @@ class WatchPresenter(private val wireframe: WatchWireframe, sharedPreferences: S
             }
             wireframe.setText(stringBuilder.toString())
         } catch (ex: IOException) {
-            ex.printStackTrace()
+            Log.e(Shared.LOG_TAG, ex.message ?: "Unknown error!")
         }
     }
 }

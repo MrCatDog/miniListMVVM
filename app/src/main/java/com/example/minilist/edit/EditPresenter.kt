@@ -1,5 +1,6 @@
 package com.example.minilist.edit
 
+import android.util.Log
 import com.example.minilist.Shared
 import com.example.minilist.main.MainPresenter
 import java.io.*
@@ -13,7 +14,7 @@ class EditPresenter internal constructor(private val wireframe: EditWireframe) {
             try {
                 wireframe.setText(source.readText())
             } catch (ex: FileNotFoundException) {
-                ex.printStackTrace()
+                Log.e(Shared.LOG_TAG, ex.message ?: "Unknown error!")
             }
         }
     }
@@ -28,7 +29,7 @@ class EditPresenter internal constructor(private val wireframe: EditWireframe) {
             try {
                 file.writeText(text)
             } catch (ex: IOException) {
-                ex.printStackTrace()
+                Log.e(Shared.LOG_TAG, ex.message ?: "Unknown error!")
             }
         }
     }
