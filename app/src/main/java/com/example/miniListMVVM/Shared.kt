@@ -1,4 +1,4 @@
-package com.example.minilist
+package com.example.miniListMVVM
 
 object Shared {
     const val FILE_NAME = "miniList"

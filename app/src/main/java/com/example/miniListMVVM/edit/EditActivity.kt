@@ -1,8 +1,8 @@
-package com.example.minilist.edit
+package com.example.miniListMVVM.edit
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.minilist.databinding.EditActivityBinding
+import com.example.miniListMVVM.databinding.EditActivityBinding
 
 class EditActivity : AppCompatActivity(), EditWireframe {
 

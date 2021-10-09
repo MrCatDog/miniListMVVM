@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">miniList</string>
+    <string name="app_name">miniListMVVM</string>
 
     <string name="create_btn_text">Создать</string>
 

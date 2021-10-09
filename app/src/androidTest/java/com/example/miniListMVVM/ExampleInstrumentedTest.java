@@ -1,4 +1,4 @@
-package com.example.minilist;
+package com.example.miniListMVVM;
 
 import android.content.Context;
 

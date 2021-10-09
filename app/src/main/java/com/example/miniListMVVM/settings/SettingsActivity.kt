@@ -1,10 +1,10 @@
-package com.example.minilist.settings
+package com.example.miniListMVVM.settings
 
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
-import com.example.minilist.databinding.ActivitySettingsBinding
+import com.example.miniListMVVM.databinding.ActivitySettingsBinding
 
 class SettingsActivity : AppCompatActivity(), SettingsWireframe {
 

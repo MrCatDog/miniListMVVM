@@ -1,4 +1,4 @@
-package com.example.minilist.edit
+package com.example.miniListMVVM.edit
 
 import java.io.File
 

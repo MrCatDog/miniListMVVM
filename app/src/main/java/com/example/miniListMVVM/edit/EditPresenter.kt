@@ -1,10 +1,8 @@
-package com.example.minilist.edit
+package com.example.miniListMVVM.edit
 
 import android.util.Log
-import com.example.minilist.Shared
-import com.example.minilist.main.MainPresenter
+import com.example.miniListMVVM.Shared
 import java.io.*
-import java.util.*
 
 class EditPresenter internal constructor(private val wireframe: EditWireframe) {
 

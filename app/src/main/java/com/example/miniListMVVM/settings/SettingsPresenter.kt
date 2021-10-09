@@ -1,8 +1,8 @@
-package com.example.minilist.settings
+package com.example.miniListMVVM.settings
 
 import android.content.SharedPreferences
-import com.example.minilist.R
-import com.example.minilist.Shared
+import com.example.miniListMVVM.R
+import com.example.miniListMVVM.Shared
 
 class SettingsPresenter internal constructor(wireframe: SettingsWireframe, private val sharedPreferences: SharedPreferences) {
 

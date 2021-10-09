@@ -1,4 +1,4 @@
-package com.example.minilist.settings
+package com.example.miniListMVVM.settings
 
 interface SettingsWireframe {
     fun setSizeRadio(sizeId: Int)

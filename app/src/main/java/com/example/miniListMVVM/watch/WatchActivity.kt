@@ -1,11 +1,10 @@
-package com.example.minilist.watch
+package com.example.miniListMVVM.watch
 
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.TypedValue
 import androidx.appcompat.app.AppCompatActivity
-import com.example.minilist.databinding.ActivityWatchBinding
-import java.io.File
+import com.example.miniListMVVM.databinding.ActivityWatchBinding
 
 class WatchActivity : AppCompatActivity(), WatchWireframe {
 

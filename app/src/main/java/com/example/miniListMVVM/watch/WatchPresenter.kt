@@ -1,9 +1,9 @@
-package com.example.minilist.watch
+package com.example.miniListMVVM.watch
 
 import android.content.SharedPreferences
 import android.util.Log
-import com.example.minilist.R
-import com.example.minilist.Shared
+import com.example.miniListMVVM.R
+import com.example.miniListMVVM.Shared
 import java.io.File
 import java.io.IOException
 

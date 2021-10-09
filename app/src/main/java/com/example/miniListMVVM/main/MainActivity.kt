@@ -1,15 +1,15 @@
-package com.example.minilist.main
+package com.example.miniListMVVM.main
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.example.minilist.R
-import com.example.minilist.watch.WatchActivity
-import com.example.minilist.main.MainWireframe.Direction.*
-import com.example.minilist.databinding.ActivityMainBinding
-import com.example.minilist.edit.EditActivity
-import com.example.minilist.settings.SettingsActivity
+import com.example.miniListMVVM.R
+import com.example.miniListMVVM.watch.WatchActivity
+import com.example.miniListMVVM.main.MainWireframe.Direction.*
+import com.example.miniListMVVM.edit.EditActivity
+import com.example.miniListMVVM.settings.SettingsActivity
+import com.example.miniListMVVM.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), MainWireframe {
 

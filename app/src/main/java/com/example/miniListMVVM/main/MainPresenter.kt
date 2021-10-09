@@ -1,6 +1,6 @@
-package com.example.minilist.main
+package com.example.miniListMVVM.main
 
-import com.example.minilist.Shared
+import com.example.miniListMVVM.Shared
 import java.io.File
 
 class MainPresenter internal constructor(private val wireframe: MainWireframe) {

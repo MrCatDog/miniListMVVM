@@ -1,4 +1,4 @@
-package com.example.minilist.watch
+package com.example.miniListMVVM.watch
 
 import java.io.File
 
