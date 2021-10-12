@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/miniList.iml" filepath="$PROJECT_DIR$/.idea/modules/miniList.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/miniList.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/miniList.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/miniListMVVM.iml" filepath="$PROJECT_DIR$/.idea/modules/miniListMVVM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/miniListMVVM.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/miniListMVVM.app.iml" />
     </modules>
   </component>
 </project>
