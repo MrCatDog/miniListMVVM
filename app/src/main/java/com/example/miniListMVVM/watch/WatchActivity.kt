@@ -3,30 +3,51 @@ package com.example.miniListMVVM.watch
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.TypedValue
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.AbstractSavedStateViewModelFactory
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import com.example.miniListMVVM.databinding.ActivityWatchBinding
 
-class WatchActivity : AppCompatActivity(), WatchWireframe {
+class WatchActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWatchBinding
-    private lateinit var presenter: WatchPresenter
+
+    private val viewModel: WatchViewModel by viewModels {
+        object : AbstractSavedStateViewModelFactory(this, null) {
+            @Suppress("UNCHECKED_CAST")
+            override fun <T : ViewModel> create(
+                key: String,
+                modelClass: Class<T>,
+                handle: SavedStateHandle
+            ): T {
+                return WatchViewModel(
+                    PreferenceManager.getDefaultSharedPreferences(this@WatchActivity),
+                    filesDir
+                ) as T
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWatchBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        presenter = WatchPresenter(this, PreferenceManager.getDefaultSharedPreferences(this))
-    }
 
-    override fun setText(text: String) {
-        binding.lineList.text = text
-    }
+        viewModel.color.observe(this) {
+            binding.lineList.setTextColor(resources.getColor(it))
+        }
 
-    override fun setTextColor(color: Int) {
-        binding.lineList.setTextColor(resources.getColor(color))
-    }
+        viewModel.size.observe(this) {
+            binding.lineList.setTextSize(
+                TypedValue.COMPLEX_UNIT_PX,
+                resources.getDimensionPixelSize(it).toFloat()
+            )
+        }
 
-    override fun setTextSize(dimension: Int) {
-        binding.lineList.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimensionPixelSize(dimension).toFloat())
+        viewModel.text.observe(this) {
+            binding.lineList.text = it
+        }
     }
 }

@@ -1,16 +1,26 @@
 package com.example.miniListMVVM.edit
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.miniListMVVM.Shared
-import java.io.*
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.IOException
 
-class EditPresenter internal constructor(private val wireframe: EditWireframe) {
+class EditViewModel(private val filesDir: File) : ViewModel() {
+
+    private val _text = MutableLiveData<String>()
+
+    val text: LiveData<String>
+        get() = _text
 
     init {
-        val source = File(wireframe.getFilesDir(), Shared.FILE_NAME)
+        val source = File(filesDir, Shared.FILE_NAME)
         if (source.exists()) {
             try {
-                wireframe.setText(source.readText())
+                _text.value = source.readText()
             } catch (ex: FileNotFoundException) {
                 Log.e(Shared.LOG_TAG, ex.message ?: "Unknown error!")
             }
@@ -18,7 +28,7 @@ class EditPresenter internal constructor(private val wireframe: EditWireframe) {
     }
 
     fun saveText(text: String) {
-        val file = File(wireframe.getFilesDir(), Shared.FILE_NAME)
+        val file = File(filesDir, Shared.FILE_NAME)
         if (text.isEmpty()) {
             //del
             file.delete()
