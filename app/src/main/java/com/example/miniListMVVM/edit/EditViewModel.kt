@@ -22,7 +22,7 @@ class EditViewModel(private val filesDir: File) : ViewModel() {
             try {
                 _text.value = source.readText()
             } catch (ex: FileNotFoundException) {
-                Log.e(Shared.LOG_TAG, ex.message ?: "Unknown error!")
+                Log.e(Shared.LOG_TAG, ex.message, ex)
             }
         }
     }
@@ -37,7 +37,7 @@ class EditViewModel(private val filesDir: File) : ViewModel() {
             try {
                 file.writeText(text)
             } catch (ex: IOException) {
-                Log.e(Shared.LOG_TAG, ex.message ?: "Unknown error!")
+                Log.e(Shared.LOG_TAG, ex.message, ex)
             }
         }
     }

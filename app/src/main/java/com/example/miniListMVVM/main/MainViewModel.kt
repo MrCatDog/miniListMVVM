@@ -32,11 +32,7 @@ class MainViewModel(private val filesDir: File) : ViewModel() {
         _isExists.value = File(filesDir, Shared.FILE_NAME).exists()
     }
 
-    fun onEditButtonClicked() {
-        _changeActivity.setValue(Direction.EDIT)
-    }
-
-    fun onNewButtonClicked() {
+    fun onNewOrEditButtonClicked() {
         _changeActivity.setValue(Direction.EDIT)
     }
 

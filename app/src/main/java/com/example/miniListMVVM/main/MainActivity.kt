@@ -2,6 +2,7 @@ package com.example.miniListMVVM.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -13,18 +14,15 @@ import com.example.miniListMVVM.databinding.ActivityMainBinding
 import com.example.miniListMVVM.edit.EditActivity
 import com.example.miniListMVVM.main.MainViewModel.Direction.*
 import com.example.miniListMVVM.settings.SettingsActivity
+import com.example.miniListMVVM.settings.SettingsViewModel
+import com.example.miniListMVVM.viewModelsExt
 import com.example.miniListMVVM.watch.WatchActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private val viewModel: MainViewModel by viewModels {
-        object : AbstractSavedStateViewModelFactory(this, null) {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(key: String, modelClass: Class<T>, handle: SavedStateHandle): T {
-                return MainViewModel(filesDir) as T
-            }
-        }
+    private val viewModel by viewModelsExt {
+        MainViewModel(filesDir)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,18 +31,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.editBtn.setOnClickListener { viewModel.onEditButtonClicked() }
+        binding.showBtn.setOnClickListener { viewModel.onShowButtonClicked() }
         binding.settingsBtn.setOnClickListener { viewModel.onSettingsButtonClicked() }
+        binding.newOrEditBtn.setOnClickListener { viewModel.onNewOrEditButtonClicked() }
 
         viewModel.isExists.observe(this) {
             if (it) {
-                binding.showNewBtn.setText(R.string.show_btn_text)
-                binding.showNewBtn.setOnClickListener { viewModel.onShowButtonClicked() }
-                binding.editBtn.visibility = View.VISIBLE
+                binding.newOrEditBtn.setText(R.string.edit_btn_text)
+                binding.showBtn.visibility = View.VISIBLE
             } else {
-                binding.showNewBtn.setText(R.string.create_btn_text)
-                binding.showNewBtn.setOnClickListener { viewModel.onNewButtonClicked() }
-                binding.editBtn.visibility = View.GONE
+                binding.newOrEditBtn.setText(R.string.create_btn_text)
+                binding.showBtn.visibility = View.GONE
             }
         }
 

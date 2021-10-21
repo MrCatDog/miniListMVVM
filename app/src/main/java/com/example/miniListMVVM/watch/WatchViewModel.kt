@@ -56,7 +56,7 @@ class WatchViewModel(private val sharedPreferences: SharedPreferences, private v
             }
             _text.value = stringBuilder.toString()
         } catch (ex: IOException) {
-            Log.e(Shared.LOG_TAG, ex.message ?: "Unknown error!")
+            Log.e(Shared.LOG_TAG, ex.message, ex)
         }
     }
 }

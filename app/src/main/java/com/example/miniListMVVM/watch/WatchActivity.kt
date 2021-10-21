@@ -3,31 +3,18 @@ package com.example.miniListMVVM.watch
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.TypedValue
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
 import com.example.miniListMVVM.databinding.ActivityWatchBinding
+import com.example.miniListMVVM.viewModelsExt
 
 class WatchActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWatchBinding
 
-    private val viewModel: WatchViewModel by viewModels {
-        object : AbstractSavedStateViewModelFactory(this, null) {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(
-                key: String,
-                modelClass: Class<T>,
-                handle: SavedStateHandle
-            ): T {
-                return WatchViewModel(
-                    PreferenceManager.getDefaultSharedPreferences(this@WatchActivity),
-                    filesDir
-                ) as T
-            }
-        }
+    private val viewModel by viewModelsExt {
+        WatchViewModel(
+            PreferenceManager.getDefaultSharedPreferences(this@WatchActivity),
+            filesDir)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

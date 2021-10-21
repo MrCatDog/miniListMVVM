@@ -8,22 +8,14 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.miniListMVVM.databinding.EditActivityBinding
 import com.example.miniListMVVM.main.MainViewModel
+import com.example.miniListMVVM.viewModelsExt
 
 class EditActivity : AppCompatActivity() {
 
     private lateinit var binding: EditActivityBinding
 
-    private val viewModel: EditViewModel by viewModels {
-        object : AbstractSavedStateViewModelFactory(this, null) {
-            @Suppress("UNCHECKED_CAST")
-            override fun <T : ViewModel> create(
-                key: String,
-                modelClass: Class<T>,
-                handle: SavedStateHandle
-            ): T {
-                return EditViewModel(filesDir) as T
-            }
-        }
+    private val viewModel by viewModelsExt {
+        EditViewModel(filesDir)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
